@@ -12,21 +12,21 @@ sudo apt install tree
 
 # Create LDIF file for adding entries
 cat <<EOF > add_entries.ldif
-dn: ou=Employee,dc=videotest,dc=local
+dn: ou=Employee,dc=testdomain,dc=local
 objectClass: organizationalUnit
 ou: Employee
 
-dn: ou=Groups,dc=videotest,dc=local
+dn: ou=Groups,dc=testdomain,dc=local
 objectClass: organizationalUnit
 ou: Groups  
 
-dn: cn=IT,ou=Groups,dc=videotest,dc=local
+dn: cn=IT,ou=Groups,dc=testdomain,dc=local
 objectClass: posixGroup        
 cn: IT
 gidNumber: 5000
 
 
-dn: uid=testuser1,ou=Employee,dc=videotest,dc=local
+dn: uid=testuser1,ou=Employee,dc=testdomain,dc=local
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
@@ -43,10 +43,10 @@ homeDirectory: /home/testuser1/
 EOF
 
 # Add entries to LDAP database
-ldapadd -x -D cn=admin,dc=videotest,dc=local -W -f add_entries.ldif
+ldapadd -x -D cn=admin,dc=testdomain,dc=local -W -f add_entries.ldif
 
 # # Verify entries using ldapsearch
-# ldapsearch -x -LLL -b dc=videotest,dc=local "uid=testuser1" cn sn gidNumber uidNumber givenName
+# ldapsearch -x -LLL -b dc=testdomain,dc=local "uid=testuser1" cn sn gidNumber uidNumber givenName
 
 
 
