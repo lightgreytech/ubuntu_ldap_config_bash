@@ -1,2 +1,3 @@
 venv
 ldap_setup.py
+add_entries.ldif
